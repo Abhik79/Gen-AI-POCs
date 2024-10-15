@@ -59,9 +59,6 @@ To run this notebook, you will need the following libraries:
 - The code includes a sleep of 30 seconds between the processing of each file to manage resource usage.
 - Ensure your Google Cloud project is properly configured with the necessary APIs enabled (e.g., Vertex AI, Cloud Storage).
 
-## License
-This project is licensed under the MIT License. See the LICENSE file for details.
-
 ## Acknowledgments
 - [Google Cloud AI Platform](https://cloud.google.com/ai-platform)
 - [Pandas Documentation](https://pandas.pydata.org/)
