@@ -25,7 +25,7 @@ To run this notebook, you will need the following libraries:
 1. **Install Required Libraries**
    Ensure you have the necessary libraries installed. You can install them via pip:
    ```bash
-   pip install pandas google-cloud-storage google-cloud-aiplatform xlsxwriter
+   The requirements.txt file is given. Make sure to run the cell.
    ```
 
 2. **Configure Google Cloud Credentials**
