@@ -1,114 +1,75 @@
-# Image-to-Task Generator
+```markdown
+# Image to Task Generator
 
-This project is a Python-based application that processes image files stored in a Google Cloud Storage (GCS) bucket, generates text responses using Vertex AI's generative models, and saves the output in an Excel file. The project is designed to convert flowchart images into structured JSON representations of steps.
+## Overview
+The **Image to Task Generator** is a Python-based project that leverages Google Cloud's Vertex AI to convert images of flowcharts into structured step-by-step instructions. The output is formatted as a JSON structure and is saved to an Excel file. This project is particularly useful for automating the extraction of tasks from visual flowcharts.
 
 ## Features
+- Uploads images from a Google Cloud Storage (GCS) bucket.
+- Processes images using Vertex AI to generate textual descriptions.
+- Formats the output in a JSON structure.
+- Saves results in an Excel file with customized formatting.
+- Implements logging for better tracking of operations.
+- Introduces a delay between processing files to manage resource allocation.
 
-- **Image Processing**: Downloads images from a specified GCS bucket and processes each image to generate a text-based description.
-- **Text Generation**: Uses Vertex AI's multimodal generative models to convert flowchart images into structured JSON steps.
-- **Excel Output**: Saves the generated JSON structure into an Excel sheet with formatting, including headers and cell borders.
-- **Image Insertion**: Inserts the processed image directly into the Excel file.
-- **Configurable Prompts**: Allows using a default or custom prompt to generate the JSON structure.
-- **Error Handling**: Catches and logs errors during processing and saves logs to a file.
+## Requirements
+To run this notebook, you will need the following libraries:
+- `pandas`
+- `google-cloud-storage`
+- `google-cloud-aiplatform`
+- `xlsxwriter`
+- `logging`
 
-## Prerequisites
+## Setup Instructions
 
-- **Python 3.x**
-- **Google Cloud SDK**: For interacting with Google Cloud Storage.
-- **Vertex AI Python SDK**: For using Vertex AI's generative models.
-- **Pandas & XlsxWriter**: For creating and formatting Excel files.
+1. **Install Required Libraries**
+   Ensure you have the necessary libraries installed. You can install them via pip:
+   ```bash
+   pip install pandas google-cloud-storage google-cloud-aiplatform xlsxwriter
+   ```
 
-## Installation
+2. **Configure Google Cloud Credentials**
+   Set up your Google Cloud credentials to enable access to the storage and AI services. You may need to authenticate using a service account or user account with the necessary permissions.
 
-1. Clone the repository:
-    ```bash
-    git clone https://github.com/yourusername/image-to-task-generator.git
-    cd image-to-task-generator
-    ```
+3. **Configuration File**
+   Create a configuration file named `config.ini` in the same directory as your Jupyter notebook. This file should contain the following parameters:
+   ```ini
+   [DEFAULT]
+   project_name = your_project_name
+   region = your_region
+   bucket_name = your_bucket_name
+   image_file_path = your_local_image_folder_path
+   output_file_path = your_local_output_folder_path
+   log_folder_path = your_local_log_folder_path
+   output_file_name_prefix = your_output_file_name_prefix
+   ```
 
-2. Create a virtual environment and activate it:
-    ```bash
-    python3 -m venv venv
-    source venv/bin/activate  # For Windows, use venv\Scripts\activate
-    ```
+## Usage Instructions
 
-3. Install the required dependencies:
-    ```bash
-    pip install -r requirements.txt
-    ```
+1. **Run the Notebook**
+   Open the Jupyter notebook and execute the cells in order. You will be prompted to enter the context, task description, and output format. If you leave these fields blank, the program will use a default prompt.
 
-## Configuration
+2. **Processing Files**
+   The notebook will:
+   - Clear the specified local folder of previous images.
+   - List and process images from the specified Google Cloud Storage bucket.
+   - Generate text responses based on the content of the images.
+   - Save the processed data into an Excel file with the specified formatting.
 
-The application requires a `config.ini` file with the following structure:
-
-```ini
-[DEFAULT]
-project_name = your-gcp-project-id
-region = your-gcp-region
-bucket_name = your-gcs-bucket-name
-image_file_path = path/to/local/image/storage
-output_file_path = path/to/local/output/files
-log_folder_path = path/to/log/folder
-output_file_name_prefix = output_file_prefix
-```
-
-Make sure to replace `your-gcp-project-id`, `your-gcp-region`, `your-gcs-bucket-name`, and other parameters as needed.
-
-## Usage
-
-Run the application using the following command:
-
-```bash
-python main.py
-```
-
-### Parameters
-
-- **Context**: Enter the context for the prompt (e.g., "Need to convert flowchart to steps").
-- **Task**: Enter a description of the task (e.g., "Generate a JSON structure representing a list of steps").
-- **Output Format**: Specify the output format (in JSON structure).
-
-If any of the inputs are empty, the application will proceed with a default prompt.
-
-## Example
-
-```
-Context : Need to convert Flowchart to Steps
-Task : Generate a JSON structure representing a list of steps. Each step should be a dictionary with the following keys:
-  - "Step number": an integer representing the step number.
-  - "Step Description": a string describing the step.
-Format : JSON format
-```
-
-The generated output will look like:
-
-```json
-[
-    {
-        "Step number": 1,
-        "Step Description": "Discuss project concept with stakeholders."
-    },
-    {
-        "Step number": 2,
-        "Step Description": "Do stakeholders approve of project concept?"
-    }
-]
-```
-
-The results, including the image and structured steps, are saved in an Excel file.
-
-## Logging
-
-- Logs are saved to a file named `image_to_task_gen_app.log` in the specified log folder.
-- The logs include details about processed files, errors, and other events.
+3. **Logging**
+   All operations are logged, including any errors encountered during processing. The log file will be created in the specified log folder.
 
 ## Notes
+- The code includes a sleep of 30 seconds between the processing of each file to manage resource usage.
+- Ensure your Google Cloud project is properly configured with the necessary APIs enabled (e.g., Vertex AI, Cloud Storage).
 
-- Supported image formats: `.jpg`, `.jpeg`, `.png`
-- The script pauses for 30 seconds after processing each file to prevent overloading the API.
+## License
+This project is licensed under the MIT License. See the LICENSE file for details.
 
-## Troubleshooting
+## Acknowledgments
+- [Google Cloud AI Platform](https://cloud.google.com/ai-platform)
+- [Pandas Documentation](https://pandas.pydata.org/)
+- [XlsxWriter Documentation](https://xlsxwriter.readthedocs.io/)
+```
 
-- Ensure that the Google Cloud credentials are set up properly and accessible for the service account.
-- Verify that the `config.ini` file has the correct project and bucket details.
-- Check the log file for detailed error messages if the script fails.
+This README provides a comprehensive guide for users to understand, set up, and use your Jupyter notebook effectively. Let me know if you need any adjustments!
