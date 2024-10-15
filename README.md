@@ -1,4 +1,3 @@
-```markdown
 # Image to Task Generator
 
 ## Overview
@@ -22,11 +21,8 @@ To run this notebook, you will need the following libraries:
 
 ## Setup Instructions
 
-1. **Install Required Libraries**
-   Ensure you have the necessary libraries installed. You can install them via pip:
-   ```bash
+1. **Install Required Libraries**   
    The requirements.txt file is given. Make sure to run the cell.
-   ```
 
 2. **Configure Google Cloud Credentials**
    Set up your Google Cloud credentials to enable access to the storage and AI services. You may need to authenticate using a service account or user account with the necessary permissions.
@@ -70,6 +66,5 @@ This project is licensed under the MIT License. See the LICENSE file for details
 - [Google Cloud AI Platform](https://cloud.google.com/ai-platform)
 - [Pandas Documentation](https://pandas.pydata.org/)
 - [XlsxWriter Documentation](https://xlsxwriter.readthedocs.io/)
-```
 
 This README provides a comprehensive guide for users to understand, set up, and use your Jupyter notebook effectively. Let me know if you need any adjustments!
